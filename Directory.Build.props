@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <AvaloniaVersion>11.2.5</AvaloniaVersion>
+    <CommunityToolkitVersion>8.4.0</CommunityToolkitVersion>
+    <MicrosoftExtensionsVersion>8.0.0</MicrosoftExtensionsVersion>
+  </PropertyGroup>
+</Project>

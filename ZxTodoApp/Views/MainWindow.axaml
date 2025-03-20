@@ -1,0 +1,66 @@
+<Window x:Class="ZxTodoApp.Views.MainWindow"
+        xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:ZxTodoApp.ViewModels" xmlns:z="https://github.com/vm0100/ZxTodoApp"
+        Name="ExtendClientAreaWindow"
+        Width="760" Height="510" MinWidth="760" MinHeight="510"
+        x:DataType="vm:MainViewModel" z:ViewModelLocator.AutoWireViewModel="True" Background="Transparent" ExtendClientAreaTitleBarHeightHint="30"
+        ExtendClientAreaToDecorationsHint="True" TransparencyLevelHint="AcrylicBlur"
+        mc:Ignorable="d">
+    <Window.Styles>
+        <Style Selector="ListBox">
+            <Setter Property="Background" Value="Transparent" />
+
+            <Style Selector="^ ListBoxItem">
+                <Setter Property="Padding" Value="10,3" />
+                <Setter Property="Background" Value="Transparent" />
+            </Style>
+        </Style>
+    </Window.Styles>
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial BackgroundSource="Digger" MaterialOpacity="0.65" TintColor="#faf9f8" TintOpacity="1" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+        <z:ExtendClientAreaSplitterPanel Background="#E8ECF0" ExtendClientAreaTitleBarHeightHint="{Binding}">
+            <z:ExtendClientAreaSplitterPanel.Pane>
+                <ScrollViewer>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Name="FixedStack">
+                            <Border BorderBrush="#C4C5C6" BorderThickness="0,0,0,1">
+                                <ListBox ItemsSource="{Binding FixedStackSource}"
+                                         SelectedItem="{Binding SelectStack}"
+                                         SelectionMode="Single">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Border>
+                        </StackPanel>
+                        <StackPanel Name="IndefiniteStack">
+                            <ListBox ItemsSource="{Binding IndefiniteStackSource}"
+                                     SelectedItem="{Binding SelectStack}"
+                                     SelectionMode="Single">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" />
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </z:ExtendClientAreaSplitterPanel.Pane>
+
+            <DockPanel LastChildFill="True">
+                <Border>
+                    <TextBlock Text="{Binding SelectStack}" />
+                </Border>
+            </DockPanel>
+        </z:ExtendClientAreaSplitterPanel>
+    </Panel>
+
+</Window>

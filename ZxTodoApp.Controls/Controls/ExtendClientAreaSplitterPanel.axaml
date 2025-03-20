@@ -1,0 +1,74 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:z="using:ZxTodoApp.Controls"
+                    x:CompileBindings="True">
+
+    <Design.PreviewWith>
+        <z:ExtendClientAreaSplitterPanel>
+            <z:ExtendClientAreaSplitterPanel.Pane>
+                <StackPanel IsHitTestVisible="False" Orientation="Vertical">
+                    <StackPanel Name="FixedStack">
+                        <Border BorderBrush="#C4C5C6" BorderThickness="0,0,0,1">
+                            <ListBox SelectionMode="Single">
+                                <ListBoxItem>
+                                    <TextBlock>我的一天</TextBlock>
+                                </ListBoxItem>
+                                <ListBoxItem>
+                                    <TextBlock>计划内</TextBlock>
+                                </ListBoxItem>
+                                <ListBoxItem>
+                                    <TextBlock>全部</TextBlock>
+                                </ListBoxItem>
+                                <ListBoxItem>
+                                    <TextBlock>任务</TextBlock>
+                                </ListBoxItem>
+                            </ListBox>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Name="IndefiniteStack" />
+                </StackPanel>
+            </z:ExtendClientAreaSplitterPanel.Pane>
+            <TextBlock>这是右边1111</TextBlock>
+        </z:ExtendClientAreaSplitterPanel>
+    </Design.PreviewWith>
+
+    <ControlTemplate x:Key="DefaultSplitterPanelTemplate" TargetType="z:ExtendClientAreaSplitterPanel">
+        <Grid RowDefinitions="*">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" MinWidth="140" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <DockPanel Grid.Row="0" Grid.Column="0"
+                       LastChildFill="True">
+                <Border Height="{TemplateBinding ExtendClientAreaTitleBarHeightHint}"
+                        DockPanel.Dock="Top" IsHitTestVisible="False" />
+                <ContentPresenter x:Name="PART_PanePresenter"
+                                  Content="{TemplateBinding Pane}"
+                                  ContentTemplate="{TemplateBinding PaneTemplate}"
+                                  DockPanel.Dock="Bottom" />
+            </DockPanel>
+            <GridSplitter Grid.Row="0" Grid.Column="1"
+                          Background="Transparent" />
+            <DockPanel Grid.Row="0" Grid.Column="2"
+                       Margin="-5,0,0,0"
+                       LastChildFill="True">
+                <Border Height="{TemplateBinding ExtendClientAreaTitleBarHeightHint}"
+                        Background="{TemplateBinding Background}"
+                        DockPanel.Dock="Top" IsHitTestVisible="False" />
+                <Border Background="{TemplateBinding Background}" DockPanel.Dock="Bottom">
+                    <ContentPresenter x:Name="PART_ContentPresenter"
+                                      Content="{TemplateBinding Content}"
+                                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                </Border>
+            </DockPanel>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTheme x:Key="{x:Type z:ExtendClientAreaSplitterPanel}" TargetType="z:ExtendClientAreaSplitterPanel">
+        <Setter Property="Background" Value="#DFDFE0" />
+        <Setter Property="BoxShadow" Value="0 0 1 0 #9E9E9E" />
+        <Setter Property="ExtendClientAreaTitleBarHeightHint" Value="33" />
+
+        <Setter Property="Template" Value="{StaticResource DefaultSplitterPanelTemplate}" />
+    </ControlTheme>
+</ResourceDictionary>
